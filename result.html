@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผลการตรวจสอบ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            background: #ffeaa7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+        }
+
+        h1 {
+            color: #e17055;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .student-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #e17055;
+        }
+
+        .student-info p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .message {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            line-height: 1.6;
+        }
+
+        .message h3 {
+            margin-bottom: 0.5rem;
+            color: #e17055;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            text-align: left;
+        }
+
+        .contact-info h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">⚠️</div>
+        <h1>ระบบยังไม่เปิดให้ใช้งาน</h1>
+        
+        <div class="student-info">
+            <p>เลขประจำตัวนักเรียน: <strong id="displayStudentId"></strong></p>
+        </div>
+        
+        <div class="message">
+            <h3>ขออภัยในความไม่สะดวก</h3>
+            <p>ขณะนี้ระบบยังอยู่ในช่วงการพัฒนาและยังไม่เปิดให้ใช้งาน กรุณาติดตามข่าวสารเพิ่มเติมหรือติดต่อเจ้าหน้าที่เพื่อสอบถามข้อมูลเพิ่มเติม</p>
+        </div>
+
+        <div class="contact-info">
+            <h4>ช่องทางติดต่อ:</h4>
+            <p>📞 โทรศัพท์: 02-XXX-XXXX</p>
+            <p>📧 อีเมล: info@school.ac.th</p>
+            <p>🕒 เวลาทำการ: จันทร์ - ศุกร์ 08:30 - 16:30 น.</p>
+        </div>
+
+        <a href="index.html" class="btn">กลับสู่หน้าหลัก</a>
+
+        <div class="footer">
+            <p>ขอบคุณที่ใช้บริการ</p>
+        </div>
+    </div>
+
+    <script>
+        // ดึงข้อมูลจาก localStorage
+        const studentId = localStorage.getItem('studentId');
+        
+        if (studentId) {
+            document.getElementById('displayStudentId').textContent = studentId;
+        } else {
+            // ถ้าไม่มีข้อมูล ให้กลับไปหน้าแรก
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
