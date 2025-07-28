@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กำลังตรวจสอบข้อมูล</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 2rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .student-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .student-info p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .progress-text {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .dots {
+            display: inline-block;
+        }
+
+        .dots::after {
+            content: '';
+            animation: dots 1.5s linear infinite;
+        }
+
+        @keyframes dots {
+            0%, 33% { content: '.'; }
+            34%, 66% { content: '..'; }
+            67%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <h1>กำลังตรวจสอบข้อมูล</h1>
+        
+        <div class="student-info">
+            <p>เลขประจำตัวนักเรียน: <strong id="displayStudentId"></strong></p>
+        </div>
+        
+        <p class="progress-text">
+            กรุณารอสักครู่ ระบบกำลังตรวจสอบข้อมูลของคุณ<span class="dots"></span>
+        </p>
+    </div>
+
+    <script>
+        // ดึงข้อมูลจาก localStorage
+        const studentId = localStorage.getItem('studentId');
+        
+        if (studentId) {
+            document.getElementById('displayStudentId').textContent = studentId;
+        } else {
+            // ถ้าไม่มีข้อมูล ให้กลับไปหน้าแรก
+            window.location.href = 'index.html';
+        }
+
+        // รอ 3-5 วินาทีแล้วเปลี่ยนไปหน้าผลลัพธ์
+        const randomDelay = Math.random() * 2000 + 3000; // 3-5 วินาที
+        
+        setTimeout(() => {
+            window.location.href = 'result.html';
+        }, randomDelay);
+    </script>
+</body>
+</html>
