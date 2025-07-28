@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบตรวจสอบข้อมูลนักเรียน</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #888;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ระบบตรวจสอบข้อมูล</h1>
+            <p>กรุณากรอกเลขประจำตัวนักเรียน</p>
+        </div>
+        
+        <form id="studentForm">
+            <div class="form-group">
+                <label for="studentId">เลขประจำตัวนักเรียน:</label>
+                <input 
+                    type="text" 
+                    id="studentId" 
+                    name="studentId" 
+                    placeholder="กรอกเลขประจำตัวนักเรียน"
+                    required
+                    pattern="[0-9]+"
+                    title="กรุณากรอกเฉพาะตัวเลข"
+                >
+            </div>
+            
+            <button type="submit" class="btn" id="submitBtn">
+                เข้าสู่ระบบ
+            </button>
+        </form>
+
+        <div class="footer">
+            <p>© 2024 ระบบตรวจสอบข้อมูลนักเรียน</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentId = document.getElementById('studentId').value.trim();
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (studentId === '') {
+                alert('กรุณากรอกเลขประจำตัวนักเรียน');
+                return;
+            }
+
+            if (!/^\d+$/.test(studentId)) {
+                alert('กรุณากรอกเฉพาะตัวเลข');
+                return;
+            }
+
+            // เก็บข้อมูลไว้ใน localStorage
+            localStorage.setItem('studentId', studentId);
+            
+            // เปลี่ยนสถานะปุ่ม
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'กำลังดำเนินการ...';
+            
+            // รอ 1 วินาทีแล้วเปลี่ยนหน้า
+            setTimeout(() => {
+                window.location.href = 'checking.html';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
